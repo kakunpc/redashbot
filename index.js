@@ -62,7 +62,12 @@ Object.keys(redashApiKeysPerHost).forEach((redashHost) => {
     const queryUrl = `${redashHostAlias}/queries/${queryId}#${visualizationId}`;
     const embedUrl = `${redashHostAlias}/embed/query/${queryId}/visualization/${visualizationId}?api_key=${redashApiKey}`;
 
-    bot.reply(message, `Taking screenshot of ${originalUrl}`);
+    bot.api.reactions.add({
+            name: 'camera_with_flash',
+            channel: message.channel,
+            timestamp: message.ts
+        });
+    // bot.reply(message, `Taking screenshot of ${originalUrl}`);
     bot.botkit.log(queryUrl);
     bot.botkit.log(embedUrl);
 
